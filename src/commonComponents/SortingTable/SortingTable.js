@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { API_URL } from "../../api";
 import SortingTableHead from "./Components/SortingTableHead";
+import { useNavigate } from "react-router-dom";
 
 const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
   const [order, setOrder] = useState("asc");
@@ -18,6 +19,7 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -55,7 +57,7 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  console.log("testttt", rows);
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
@@ -72,11 +74,11 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
               headCells={headCells}
             />
             <TableBody>
-              {rows.map((row, index) => {
+              {rows?.map((row, index) => {
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => console.log(event, row.id)}
+                    onClick={(event) => navigate(`/campaigns/${row.id}`)}
                     key={index}
                   >
                     {headCells.map((headCell) => (
