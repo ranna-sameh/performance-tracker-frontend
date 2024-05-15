@@ -2,7 +2,7 @@ import { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import CustomTabPanel from "../../commonComponents/CustomTabPanel/CustomtabPanel";
+import CustomTabPanel from "./Components/CustomTabPanel/CustomtabPanel";
 
 const CustomTabs = ({ tabComponents }) => {
   const [value, setValue] = useState(0);
