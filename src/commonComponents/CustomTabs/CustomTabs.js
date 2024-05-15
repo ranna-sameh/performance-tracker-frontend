@@ -17,15 +17,8 @@ const CustomTabs = ({ tabComponents }) => {
         <Tabs
           value={value}
           onChange={handleChange}
-          sx={{
-            "& .MuiTabs-indicator": {
-              backgroundColor: "black",
-            },
-            "& .Mui-selected": {
-              color: "black",
-              fontWeight: "bold",
-            },
-          }}
+          textColor="secondary"
+          indicatorColor="secondary"
         >
           {Object.keys(tabComponents).map((label, index) => (
             <Tab key={index} label={label} />
