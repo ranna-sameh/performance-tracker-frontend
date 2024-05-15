@@ -6,16 +6,28 @@ import SelectorMenu from "../SelectorMenu/SelectorMenu";
 import { Box } from "@mui/material";
 const chartsTypes = ["Line Chart", "Bar Chart", "Pie Chart"];
 
-const Chart = ({ data }) => {
+const Chart = ({ data, xaxislabel, yaxislabel }) => {
   let ChartComponent = null;
   const [chartType, setChartType] = useState("Line Chart");
 
   switch (chartType) {
     case "Line Chart":
-      ChartComponent = <LineChartComponent data={data} />;
+      ChartComponent = (
+        <LineChartComponent
+          data={data}
+          xaxislabel={xaxislabel}
+          yaxislabel={yaxislabel}
+        />
+      );
       break;
     case "Bar Chart":
-      ChartComponent = <BarChartComponent data={data} />;
+      ChartComponent = (
+        <BarChartComponent
+          data={data}
+          xaxislabel={xaxislabel}
+          yaxislabel={yaxislabel}
+        />
+      );
       break;
     case "Pie Chart":
       ChartComponent = <PieChartComponent data={data} />;

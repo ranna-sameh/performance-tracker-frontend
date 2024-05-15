@@ -7,14 +7,19 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Label,
 } from "recharts";
 
-const LineChartComponent = ({ data }) => {
+const LineChartComponent = ({ data, xaxislabel = "", yaxislabel = "" }) => {
   return (
-    <ResponsiveContainer  height={400}>
+    <ResponsiveContainer height={400}>
       <LineChart width={500} height={400} data={data}>
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="name">
+          <Label value={xaxislabel} offset={0} position="insideBottom" />
+        </XAxis>
+        <YAxis>
+          <Label value={yaxislabel} angle={-90} position="insideLeft" />
+        </YAxis>
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
         <Tooltip />
         <Legend />
