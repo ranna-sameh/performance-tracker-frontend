@@ -45,8 +45,13 @@ const CustomAnaylitics = () => {
         <FilterAltOutlinedIcon />
         <Typography>Filter campaigns</Typography>
       </Box>
-      <Grid container rowSpacing={2} columnSpacing={1}>
-        <Grid item xs={6} md={1.5}>
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={1}
+        style={{ marginBottom: 10 }}
+      >
+        <Grid item xs={12} md={1.5}>
           <SelectorMenu
             options={adMetrics}
             setSelected={setMetric}
