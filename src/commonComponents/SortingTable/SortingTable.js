@@ -11,6 +11,8 @@ import axios from "axios";
 import { API_URL } from "../../api";
 import SortingTableHead from "./Components/SortingTableHead";
 import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
+import { flexbox } from "@mui/system";
 
 const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
   const [order, setOrder] = useState("asc");
@@ -19,6 +21,7 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
+  const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +31,7 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
           page: page + 1,
           page_size: rowsPerPage,
           ordering: `${order === "desc" ? "-" : ""}${orderBy}`,
+          search_id_value: searchItem,
         },
       })
       .then((response) => {
@@ -41,7 +45,16 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
         setTotalCount(data.count);
       })
       .catch();
-  }, [page, rowsPerPage, orderBy, order, isCampaign, setCampaignDetails, url]);
+  }, [
+    page,
+    rowsPerPage,
+    orderBy,
+    order,
+    isCampaign,
+    setCampaignDetails,
+    url,
+    searchItem,
+  ]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -57,9 +70,20 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  console.log("testttt", rows);
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        rowGap: 5,
+      }}
+    >
+      <TextField
+        placeholder="Search by id"
+        value={searchItem}
+        onChange={(e) => setSearchItem(e.target.value)}
+      />
       <Paper sx={{ width: "100%", mb: 2 }}>
         <TableContainer>
           <Table
