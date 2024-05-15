@@ -11,12 +11,7 @@ import axios from "axios";
 import { API_URL } from "../../api";
 import SortingTableHead from "./Components/SortingTableHead";
 
-const SortingTable = ({
-  headCells,
-  url,
-  isCampaign,
-  setCampaignDetails = () => {},
-}) => {
+const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("id");
   const [page, setPage] = useState(0);
