@@ -14,7 +14,19 @@ const CustomTabs = ({ tabComponents }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          sx={{
+            "& .MuiTabs-indicator": {
+              backgroundColor: "black",
+            },
+            "& .Mui-selected": {
+              color: "black",
+              fontWeight: "bold",
+            },
+          }}
+        >
           {Object.keys(tabComponents).map((label, index) => (
             <Tab key={index} label={label} />
           ))}
