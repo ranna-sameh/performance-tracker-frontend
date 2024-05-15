@@ -12,7 +12,6 @@ import { API_URL } from "../../api";
 import SortingTableHead from "./Components/SortingTableHead";
 import { useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
-import { flexbox } from "@mui/system";
 
 const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
   const [order, setOrder] = useState("asc");
