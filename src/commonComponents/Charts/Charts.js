@@ -1,8 +1,9 @@
-import { MenuItem, Select } from "@mui/material";
 import React, { useState } from "react";
 import LineChartComponent from "./Components/LineChart/";
 import BarChartComponent from "./Components/BarChart";
 import PieChartComponent from "./Components/PieChart/PieChart";
+import SelectorMenu from "../SelectorMenu/SelectorMenu";
+import { Box } from "@mui/material";
 const chartsTypes = ["Line Chart", "Bar Chart", "Pie Chart"];
 
 const Chart = ({ data }) => {
@@ -25,19 +26,14 @@ const Chart = ({ data }) => {
 
   return (
     <div>
-      <Select
-        value={chartType}
-        onChange={(e) => setChartType(e.target.value)}
-        style={{ marginBottom: 20 }}
-      >
-        {chartsTypes.map((type, index) => {
-          return (
-            <MenuItem value={type} key={index}>
-              {type}
-            </MenuItem>
-          );
-        })}
-      </Select>
+      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <SelectorMenu
+          options={chartsTypes}
+          setSelected={setChartType}
+          selectedValue={chartType}
+        />
+      </Box>
+
       {ChartComponent}
     </div>
   );
