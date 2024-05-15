@@ -1,4 +1,10 @@
-import { Tooltip, Legend, ResponsiveContainer, PieChart, Pie } from "recharts";
+import {
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+} from "recharts";
 
 const PieChartComponent = ({ data }) => {
   return (

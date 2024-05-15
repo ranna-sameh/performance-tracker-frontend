@@ -78,8 +78,11 @@ const SortingTable = ({ headCells, url, isCampaign, setCampaignDetails }) => {
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => navigate(`/campaigns/${row.id}`)}
+                    onClick={(event) =>
+                      !isCampaign && navigate(`/campaigns/${row.id}`)
+                    }
                     key={index}
+                    style={{ cursor: !isCampaign && "pointer" }}
                   >
                     {headCells.map((headCell) => (
                       <TableCell align="right">{row[headCell.id]}</TableCell>

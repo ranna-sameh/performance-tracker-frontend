@@ -1,10 +1,11 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../../../api";
 import Charts from "../../../../commonComponents/Charts";
 import SelectorMenu from "../../../../commonComponents/SelectorMenu/SelectorMenu";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 
 const adMetrics = ["clicks", "impressions", "spent"];
 
@@ -12,7 +13,8 @@ const AdsVisuals = () => {
   const [data, setData] = useState([]);
   const [metric, setMetric] = useState("clicks");
   const { id } = useParams();
-  const handleApplyFilters = () => {
+
+  const handleApplyFilters = useCallback(() => {
     axios
       .get(`${API_URL}/campaigns/${id}/metrics/`, {
         params: {
@@ -23,16 +25,19 @@ const AdsVisuals = () => {
         setData(response.data);
       })
       .catch();
-  };
+  }, [id, metric, setData]);
 
   useEffect(() => {
     handleApplyFilters();
-  }, []);
+  }, [handleApplyFilters]);
 
   return (
-    <Box style={{ display: "flex", flexDirection: "column", rowGap: 10 }}>
+    <Box style={{ display: "flex", flexDirection: "column", rowGap: 5 }}>
+      <Box style={{ display: "flex", flexDirection: "row", marginBottom: 5 }}>
+        <FilterAltOutlinedIcon />
+        <Typography>Ads metric</Typography>
+      </Box>
       <Box sx={{ width: { xs: "100%", md: "20%" } }}>
-        <Typography style={{ fontWeight: 600 }}>ADS METRIC:</Typography>
         <SelectorMenu
           options={adMetrics}
           setSelected={setMetric}
@@ -40,15 +45,7 @@ const AdsVisuals = () => {
         />
       </Box>
 
-      <Button
-        onClick={() => handleApplyFilters()}
-        variant="contained"
-        style={{ backgroundColor: "black" }}
-        sx={{ width: { xs: "100%", md: "15%" } }}
-      >
-        Apply Filters
-      </Button>
-      <Charts data={data} />
+      <Charts data={data} xaxislabel="Campaign" yaxislabel={metric} />
     </Box>
   );
 };
