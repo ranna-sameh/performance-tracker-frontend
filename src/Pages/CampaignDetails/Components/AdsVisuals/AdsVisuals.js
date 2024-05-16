@@ -7,7 +7,13 @@ import Charts from "../../../../commonComponents/Charts";
 import SelectorMenu from "../../../../commonComponents/SelectorMenu/SelectorMenu";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 
-const adMetrics = ["clicks", "impressions", "spent"];
+const adMetrics = [
+  "clicks",
+  "impressions",
+  "spent",
+  "total_conversion",
+  "approved_conversion",
+];
 
 const AdsVisuals = () => {
   const [data, setData] = useState([]);
